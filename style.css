@@ -1,0 +1,85 @@
+.login-h2 {
+    text-align: center;
+}
+
+.login-form {
+    text-align: center;
+}
+
+.login-form div {
+    padding: 10px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"],
+.login-form input[type="submit"] {
+    width: 400px;
+    box-sizing: border-box;
+}
+
+.login-form input[type="submit"] {
+    background-color: blue;
+}
+
+footer {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.add_user-container {
+    display: grid;
+    grid-template-columns: 15% 85% ;
+    grid-gap: 20px;
+}
+
+.new-user {
+    background-color: rgb(231, 231, 231);
+}
+
+.new-user h1 {
+    margin-left: 20px;
+}
+
+.new-user form {
+    background-color: white;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.new-user-form {
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+}
+
+.new-user-form div {
+    margin: 10px;
+}
+
+#sub {
+    margin-left: 80%;
+    margin-bottom: 10px;
+    background-color: blue;
+    border-radius: 5px;
+}
+
+.sidebar a {
+    text-decoration: none;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin-top: 20px;
+    margin-left: 0;
+}
+
+#user {
+    border-bottom: 1px solid grey;
+    padding-bottom: 15px;
+}
+

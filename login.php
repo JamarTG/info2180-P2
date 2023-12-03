@@ -43,21 +43,26 @@ try {
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h2>Login</h2>
+    
+    <h2 class="login-h2">Login</h2>
 
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <form class="login-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <div>
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email" required />
+            <label for="email"></label>
+            <input type="text" id="email" name="email" placeholder="Email Address" required />
         </div>
         <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required />
+            <label for="password"></label>
+            <input type="password" id="password" name="password" placeholder="Password" required />
         </div>
         <div>
             <input type="submit" value="Login" />
         </div>
     </form>
+
+    <footer>
+        <p>Copyright &copy; Dolphin CRM</p>
+    </footer>
 
     <?php if ($message) { ?>
         <p><?php echo $message; ?></p>
