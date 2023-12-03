@@ -1,14 +1,76 @@
 body {
-    display: flex;
-    flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
 }
 
+
 #form-container {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#sidebar {
+    width: 250px;
+    background-color: #333;
+    color: white;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar ul li {
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sales_type {
+    color: green;
+}
+
+.support_type {
+    color: blue;
+
+}
+
+input {
+    margin: 15px;
+    width: 30rem;
+    height: 20px;
+    border-radius: 2px;
+    padding: 10px;
     width: 500px;
     padding: 20px;
 
@@ -65,17 +127,27 @@ input:focus {
     outline: none;
 }
 
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
 input[type="text"],
-input[type="password"] {
-    width: 96%;
+input[type="password"],
+input[type="submit"] {
+    width: 30rem;
+
+    padding: 8px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 input[type="submit"] {
     background-color: #3498db;
     color: white;
     cursor: pointer;
-}
-
-input[type="submit"]:hover {
-    background-color: #2980b9;
+    width: 31.5rem;
+    height: 2.8rem;
 }

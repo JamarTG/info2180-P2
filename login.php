@@ -49,7 +49,6 @@ try {
 
 <body>
 
-
     <div id="form-container">
         <h2 class="login-h2">Login</h2>
 
@@ -65,13 +64,13 @@ try {
             <div>
                 <input type="submit" value="Login" />
             </div>
+            <hr>
+            <br> <br>
+
+            <footer>
+                <p>Copyright &copy; Dolphin CRM</p>
+            </footer>
         </form>
-
-        <hr>
-
-        <footer>
-            <p>Copyright &copy; Dolphin CRM</p>
-        </footer>
 
     </div>
 
