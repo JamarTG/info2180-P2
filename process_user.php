@@ -15,7 +15,7 @@ $databasename = 'dolphin_crm';
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
+    
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $email = $_POST['email'];
@@ -26,10 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $conn = new PDO("mysql:host=$host;dbname=$databasename", $username, $db_password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-
+      
         $stmt = $conn->prepare("INSERT INTO Users (firstname, lastname, email, password, role) VALUES (:firstname, :lastname, :email, :password, :role)");
-
-
+        
+    
         $stmt->bindParam(':firstname', $firstname);
         $stmt->bindParam(':lastname', $lastname);
         $stmt->bindParam(':email', $email);
