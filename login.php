@@ -48,26 +48,34 @@ try {
 <?php include "header.php" ?>
 
 <body>
-    
-    <h2 class="login-h2">Login</h2>
 
-    <form class="login-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <div>
-            <label for="email"></label>
-            <input type="text" id="email" name="email" placeholder="Email Address" required />
-        </div>
-        <div>
-            <label for="password"></label>
-            <input type="password" id="password" name="password" placeholder="Password" required />
-        </div>
-        <div>
-            <input type="submit" value="Login" />
-        </div>
-    </form>
 
-    <footer>
-        <p>Copyright &copy; Dolphin CRM</p>
-    </footer>
+    <div id="form-container">
+        <h2 class="login-h2">Login</h2>
+
+        <form class="login-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <div>
+                <label for="email"></label>
+                <input type="text" id="email" name="email" placeholder="Email Address" required />
+            </div>
+            <div>
+                <label for="password"></label>
+                <input type="password" id="password" name="password" placeholder="Password" required />
+            </div>
+            <div>
+                <input type="submit" value="Login" />
+            </div>
+        </form>
+
+        <hr>
+
+        <footer>
+            <p>Copyright &copy; Dolphin CRM</p>
+        </footer>
+
+    </div>
+
+
 
     <?php if ($message) { ?>
         <p>

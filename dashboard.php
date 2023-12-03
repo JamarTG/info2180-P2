@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Dashboard</title>
+<link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
 
@@ -13,13 +14,8 @@
         <li><a href="logout.php">Logout</a></li>
     </ul>
 </div>
-
-<div id="content">
-    <h1>Welcome to the Dashboard</h1>
-    <p>This is your dashboard content.</p>
-</div>
-
 <main>
+<h2>Dashboard</h2>
     <?php
     session_start();
 
@@ -43,7 +39,7 @@
     } else if ($filtered == "Assigned") {
         echo assigned_to($conn);
     } else {
-        echo "Invalid filter parameter"; // Handle other cases if necessary
+        echo "Invalid filter parameter"; 
     }
 
     function all_contacts($conn)
