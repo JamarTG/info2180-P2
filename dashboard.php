@@ -3,6 +3,7 @@
 
 <head>
     <title>Dashboard</title>
+<link rel="stylesheet" href="dashboard.css">
 </head>
 
 <body>
@@ -32,6 +33,69 @@
             echo "Access denied. Only admins can view users.";
             exit();
         }
+=======
+<div id="sidebar">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="add_user.php">New Contact</a></li>
+        <li><a href="view_users.php">Users</a></li>
+        <li><a href="logout.php">Logout</a></li>
+    </ul>
+</div>
+<main>
+<h2>Dashboard</h2>
+    <?php
+    session_start();
+
+    $host = 'localhost';
+    $username = 'root';
+    $password = '';
+    $dbname = 'dolphin_crm';
+
+    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+
+    $filtered = isset($_GET["filter"]) ? $_GET["filter"] : "All";
+
+    if ($filtered == "All") {
+        echo all_contacts($conn);
+    } else if ($filtered == "SalesLead") {
+        $lookup = "Sales Lead";
+        echo only_type($conn, $lookup);
+    } else if ($filtered == "Support") {
+        $lookup = "Support";
+        echo only_type($conn, $lookup);
+    } else if ($filtered == "Assigned") {
+        echo assigned_to($conn);
+    } else {
+        echo "Invalid filter parameter"; 
+    }
+
+    function all_contacts($conn)
+    {
+        $stmt = $conn->query("SELECT * FROM Contacts");
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        echo "<table>";
+        echo "<tr>";
+        echo "<th>Name</th>";
+        echo "<th>Email</th>";
+        echo "<th>Company</th>";
+        echo "<th>Type</th>";
+        echo "<th></th>";
+        echo "</tr>";
+
+        foreach ($results as $row) {
+            $name = $row["title"] . ' ' . $row["firstname"] . ' ' . $row["lastname"];
+            echo "<tr>";
+            echo "<td>" . $name . "</td>";
+            echo "<td>" . $row["email"] . "</td>";
+            echo "<td>" . $row["company"] . "</td>";
+            if ($row["type"] == "Sales Lead") {
+                echo "<td class='sales_type'>" . $row["type"] . "</td>";
+            } else if ($row["type"] == "Support") {
+                echo "<td class='support_type'>" . $row["type"] . "</td>";
+            }
+=
 
         $host = 'localhost';
         $username = 'root';
