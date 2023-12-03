@@ -1,7 +1,7 @@
 body{
     margin: 0px;
 }
-img{
+#dolphin-logo{
     background-color: rgb(22, 22, 38);
     width: 50px;
     height: 50px;
@@ -14,7 +14,6 @@ h1{
 }
 .header-container{
     padding-left: 15px;
-    margin-bottom: 50px;
     display: flex;
     align-items: center;
     padding-top: 5px;
