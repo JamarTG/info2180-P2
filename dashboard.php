@@ -15,13 +15,13 @@
         <div id="sidebar">
             <ul>
                 <li><img class="icon sidebar-link" src="assets/house-solid.svg" /><a href="dashboard.php">Home</a></li>
-                <li><img class="icon sidebar-link" src="assets/address-book-regular.svg"><a href="#" class="sidebar-link"
-                        data-component="new_contact.php">New Contact</a></li>
+                <li><img class="icon sidebar-link" src="assets/address-book-regular.svg"><a href="#"
+                        class="sidebar-link" data-component="new_contact.php">New Contact</a></li>
                 <li><img class="icon sidebar-link" src="assets/users-solid.svg"><a href="#" class="sidebar-link"
                         data-component="view_users.php">Users</a></li>
-                        <hr>
-                <li><img class="icon sidebar-link" src="assets/right-from-bracket-solid.svg"><a href="logout.php"
-                        class="sidebar-link">Logout</a></li>
+                <hr>
+                <li><img class="icon sidebar-link" src="assets/right-from-bracket-solid.svg"><a
+                        href="logout.php">Logout</a></li>
 
             </ul>
         </div>
@@ -71,7 +71,7 @@
                 $stmt = $conn->query("SELECT * FROM Contacts");
                 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                echo "<table>";
+                echo "<table class='styled-table'>";
                 echo "<tr>";
                 echo "<th>Name</th>";
                 echo "<th>Email</th>";
@@ -83,10 +83,12 @@
                 foreach ($results as $row) {
                     $name = $row["title"] . ' ' . $row["firstname"] . ' ' . $row["lastname"];
                     echo "<tr>";
-                    echo "<td>" . $name . "</td>";
+                    echo "<td><b>" . $name . "</b></td>";
                     echo "<td>" . $row["email"] . "</td>";
                     echo "<td>" . $row["company"] . "</td>";
-                    echo "<td>" . $row["type"] . "</td>";
+                    $typeClass = strtolower(str_replace(' ', '-', $row["type"]));
+                    echo "<td class='$typeClass'><span class='type-label'>" . ucwords($row["type"]) . "</span></td>";
+
                     echo "<td>" . "<a href='#'>View</a>" . "</td>";
                     echo "</tr>";
                 }
@@ -99,7 +101,7 @@
                 $stmt = $conn->query("SELECT * FROM Contacts WHERE type = '$lookup'");
                 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                echo "<table>";
+                echo "<table class='styled-table'>";
                 echo "<tr>";
                 echo "<th>Name</th>";
                 echo "<th>Email</th>";
@@ -111,10 +113,12 @@
                 foreach ($results as $row) {
                     $name = $row["title"] . ' ' . $row["firstname"] . ' ' . $row["lastname"];
                     echo "<tr>";
-                    echo "<td>" . $name . "</td>";
+                    echo "<td><b>" . $name . "</b></td>";
                     echo "<td>" . $row["email"] . "</td>";
                     echo "<td>" . $row["company"] . "</td>";
-                    echo "<td>" . $row["type"] . "</td>";
+                    $typeClass = strtolower(str_replace(' ', '-', $row["type"]));
+                    echo "<td class='$typeClass'><span class='type-label'>" . ucwords($row["type"]) . "</span></td>";
+
                     echo "<td>" . "<a href='#'>View</a>" . "</td>";
                     echo "</tr>";
                 }
@@ -129,7 +133,7 @@
                 $stmt = $conn->query("SELECT * FROM Contacts WHERE assigned_to = '$current_id'");
                 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                echo "<table>";
+                echo "<table class='styled-table'>";
                 echo "<tr>";
                 echo "<th>Name</th>";
                 echo "<th>Email</th>";
@@ -141,10 +145,11 @@
                 foreach ($results as $row) {
                     $name = $row["title"] . ' ' . $row["firstname"] . ' ' . $row["lastname"];
                     echo "<tr>";
-                    echo "<td>" . $name . "</td>";
+                    echo "<td><b>" . $name . "</b></td>";
                     echo "<td>" . $row["email"] . "</td>";
                     echo "<td>" . $row["company"] . "</td>";
-                    echo "<td>" . $row["type"] . "</td>";
+                    $typeClass = strtolower(str_replace(' ', '-', $row["type"]));
+                    echo "<td class='$typeClass'><span class='type-label'>" . ucwords($row["type"]) . "</span></td>";
                     echo "<td>" . "<a href='#'>View</a>" . "</td>";
                     echo "</tr>";
                 }
