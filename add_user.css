@@ -1,0 +1,37 @@
+input,
+select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+
+.new-user-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+
+#sub {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding:10px 15px ;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.save-btn-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+label {
+font-weight: bold;
+}

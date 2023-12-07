@@ -1,0 +1,55 @@
+a {
+    text-decoration: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+
+}
+
+th {
+    color: black;
+    background-color: grey;
+}
+
+strong {
+    color: black;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    border: none;
+    background-color: white;
+}
+
+th {
+    background-color: #f2f2f2;
+    padding: 13px;
+}
+
+.add-user-btn {
+    margin-right: 60px;
+    background-color: blue;
+    color: white;
+    text-align: center;
+    padding: 12px;
+}
+
+.header a {
+    text-decoration: none;
+}
+
+.header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
