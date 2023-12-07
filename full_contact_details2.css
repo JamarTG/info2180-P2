@@ -1,0 +1,104 @@
+.container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(219, 218, 218);
+  }
+  
+.icon {
+    margin-right: 10px;
+    margin-left: 15px;
+  }
+  
+#sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #fff;
+    color: #333;
+  }
+  
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+#sidebar ul li {
+    padding: 10px;
+  }
+  
+#sidebar ul li a {
+    text-decoration: none;
+    color: black;
+  }
+  
+main {
+    flex: 1;
+    padding: 20px;
+  }
+  
+
+
+  
+  
+.contact-header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  
+   
+.contact-header h3 {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0;
+  }
+  
+.contact-header p {
+    font-size: 13px;
+    color: black;
+    margin: 0;
+  }
+  
+.buttons {
+    text-align: right;
+  }
+  
+.buttons button {
+    background-color: #fbbb24;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+.buttons .assign-to-me {
+    background-color: rgb(70, 207, 70);
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+
+  table {
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 5px;  }
+  
+  th, td {
+    padding: 5px;
+    text-align: left;
+    font-size: 13px;
+  }
+  
+  th {
+    color: #666;
+  }
+  
+  td {
+    color: black;
+  }
+  
+  
