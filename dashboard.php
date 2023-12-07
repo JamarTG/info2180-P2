@@ -89,7 +89,7 @@
                     $typeClass = strtolower(str_replace(' ', '-', $row["type"]));
                     echo "<td class='$typeClass'><span class='type-label'>" . ucwords($row["type"]) . "</span></td>";
 
-                    echo "<td>" . "<a href='#'>View</a>" . "</td>";
+                    echo "<td>" . "<a href='full_contact_details.php?id=". $row['id']."'>View</a>" . "</td>";
                     echo "</tr>";
                 }
 
@@ -119,7 +119,8 @@
                     $typeClass = strtolower(str_replace(' ', '-', $row["type"]));
                     echo "<td class='$typeClass'><span class='type-label'>" . ucwords($row["type"]) . "</span></td>";
 
-                    echo "<td>" . "<a href='#'>View</a>" . "</td>";
+                    echo "<td>" . "<a href='full_contact_details.php?id=". $row['id']."'>View</a>" . "</td>"; 
+                   
                     echo "</tr>";
                 }
 
@@ -150,7 +151,7 @@
                     echo "<td>" . $row["company"] . "</td>";
                     $typeClass = strtolower(str_replace(' ', '-', $row["type"]));
                     echo "<td class='$typeClass'><span class='type-label'>" . ucwords($row["type"]) . "</span></td>";
-                    echo "<td>" . "<a href='#'>View</a>" . "</td>";
+                    echo "<td>" . "<a href='full_contact_details.php?id=". $row['id']."'>View</a>" . "</td>";
                     echo "</tr>";
                 }
 
