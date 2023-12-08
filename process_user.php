@@ -12,32 +12,33 @@ $db_password = '';
 $databasename = 'dolphin_crm';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $role = $_POST['role'];
-
+    
     if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/", $password)) {
         echo "Ensure that the password has at least one number and letter (including a capital letter) and is at least 8 characters long";
         exit();
     }
 
     $password = password_hash($password, PASSWORD_DEFAULT);
+    $created_at = date('Y-m-d H:i:s'); // Current timestamp
 
     try {
         $conn = new PDO("mysql:host=$host;dbname=$databasename", $username, $db_password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $stmt = $conn->prepare("INSERT INTO Users (firstname, lastname, email, password, role) VALUES (:firstname, :lastname, :email, :password, :role)");
+        $stmt = $conn->prepare("INSERT INTO Users (firstname, lastname, email, password, role, created_at) VALUES (:firstname, :lastname, :email, :password, :role, :created_at)");
 
         $stmt->bindParam(':firstname', $firstname);
         $stmt->bindParam(':lastname', $lastname);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $password);
         $stmt->bindParam(':role', $role);
-
+        $stmt->bindParam(':created_at', $created_at);
+    
         $stmt->execute();
 
         echo "User added successfully!";

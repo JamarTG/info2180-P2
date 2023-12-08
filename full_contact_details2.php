@@ -106,11 +106,11 @@ $contact = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <script>
         function switchToSalesLead(id) {
-            // ... (your existing JavaScript function for switching to Sales Lead)
+         
         }
 
         function switchToSupport(id) {
-            // ... (your existing JavaScript function for switching to Support)
+        
         }
     </script>
 </body>
