@@ -9,21 +9,11 @@ $password = '';
 $dbname = 'dolphin_crm';
 
 $conn = mysqli_connect($host, $username, $password, $dbname);
+
+
 if(!$conn) {
     die("Connection failed: ".mysqli_connect_error());
 }
-
-
-
-
-/*try{
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-
-catch(PDOException $exception){
-    exit('Failed to connect to database: ' . $exception->getMessgae());
-}*/
 
 ?>
 

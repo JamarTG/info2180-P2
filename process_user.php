@@ -1,10 +1,8 @@
 <?php
 session_start();
 
-
 if ($_SESSION['role'] !== 'Admin') {
-    echo $_SESSION['role'];
-    "Access denied. Only admins can add users.";
+    echo "Access denied. Only admins can add users.";
     exit();
 }
 
@@ -13,22 +11,26 @@ $username = 'root';
 $db_password = '';
 $databasename = 'dolphin_crm';
 
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = $_POST['password'];
     $role = $_POST['role'];
+
+    if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/", $password)) {
+        echo "Ensure that the password has at least one number and letter (including a capital letter) and is at least 8 characters long";
+        exit();
+    }
+
+    $password = password_hash($password, PASSWORD_DEFAULT);
 
     try {
         $conn = new PDO("mysql:host=$host;dbname=$databasename", $username, $db_password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-
         $stmt = $conn->prepare("INSERT INTO Users (firstname, lastname, email, password, role) VALUES (:firstname, :lastname, :email, :password, :role)");
-
 
         $stmt->bindParam(':firstname', $firstname);
         $stmt->bindParam(':lastname', $lastname);

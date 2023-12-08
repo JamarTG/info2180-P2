@@ -57,12 +57,12 @@ https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css
                 </div>
 
                 <?php
-                session_start();
+                // session_start();
 
-                if($_SESSION['role'] !== 'Admin') {
-                    echo "Access denied. Only admins can view users.";
-                    exit();
-                }
+                // if($_SESSION['role'] !== 'Admin') {
+                //     echo "Access denied. Only admins can view users.";
+                //     exit();
+                // }
 
                 $host = 'localhost';
                 $username = 'root';

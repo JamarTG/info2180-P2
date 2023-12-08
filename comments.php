@@ -2,18 +2,15 @@
 
 function getNotes($conn){
     $sql = "SELECT * FROM notes";
-    $result = $conn->query($sql);
-    while($row = $result->fetch_assoc()){
-        echo"<div class=comment-box>";
-            echo $row['created_by']."<br>";
-            echo $row['comment']."<br>"; 
-            echo $row['created_at']."<br><br>";
-        echo"<div>";
+    $stmt = $conn->query($sql);
+    while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        echo "<div class='comment-box'>";
+            echo $row['created_by'] . "<br>";
+            echo $row['comment'] . "<br>"; 
+            echo $row['created_at'] . "<br><br>";
+        echo "</div>";
     }
-    
-    
 }
-
 
 function setNotes($conn) {
     if (isset($_POST['noteSubmit'])){
@@ -22,13 +19,16 @@ function setNotes($conn) {
         $created_by = $_POST['created_by'];
         $note = $_POST['note'];
 
-        $sql1="INSERT INTO schema (contact_id, created_at, created_by, comment) 
-        VALUES ('$contact_id', '$created_at', '$created_by', '$note')";
+        $sql = "INSERT INTO notes (contact_id, created_at, created_by, comment) 
+                VALUES (:contact_id, :created_at, :created_by, :note)";
+                
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':contact_id', $contact_id);
+        $stmt->bindParam(':created_at', $created_at);
+        $stmt->bindParam(':created_by', $created_by);
+        $stmt->bindParam(':note', $note);
 
-        $sql="INSERT INTO notes (comment, created_at) 
-        VALUES ('$note', '$created_at')";
-
-        $result = $conn->query($sql);
+        $stmt->execute();
     }
-    
 }
+?>
