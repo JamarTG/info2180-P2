@@ -27,9 +27,22 @@ textarea {
   font-size: 12px;
 
 }
+
 form {
-background-color: grey;
+  width: 100%;
+  padding: 10px;
 }
+
+form button {
+  padding: 10px;
+  font-size: 14px;
+  width: 10em;
+  color: white;
+  background-color: aqua;
+  border: none;
+  border-radius: 5px;
+}
+
 .assignBtn {
   width: 10vw;
   background-color: rgb(55, 55, 180);
@@ -57,7 +70,7 @@ background-color: grey;
   align-items: center;
 }
 
-.container {
+/* .container {
   height: 100vh;
 
   display: flex;
@@ -65,20 +78,12 @@ background-color: grey;
   margin: 0;
   padding: 0;
 
-}
+} */
 
 .icon {
   margin-right: 10px;
   margin-left: 15px;
 }
-
-
-main {
-  flex: 1;
-}
-
-
-
 
 
 .contact-header h3 {
@@ -107,8 +112,9 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 10px;
-  grid-gap: 10px;
+  grid-gap: 30px;
   border: 1px solid #ccc;
+  padding: 50px;
 }
 
 .grid-item {
@@ -119,7 +125,14 @@ main {
 
 .container {
   height: 100%;
-  width: 80%;
   background-color: white;
   border-left: 1px solid rgb(37, 37, 37);
+}
+
+#all-content {
+  display: flex;
+  gap: 100px;
+  position: relative;
+  bottom: 0;
+  flex-direction: column;
 }

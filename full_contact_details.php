@@ -44,7 +44,7 @@ $contact = $stmt->fetch(PDO::FETCH_ASSOC);
 
 <body>
     <div class="container">
-        <main id="main-content">
+        <main id="all-content">
             <div class="row-1">
 
                 <div class="contact-header">
@@ -114,18 +114,19 @@ $contact = $stmt->fetch(PDO::FETCH_ASSOC);
             getNotes($conn);
 
 
-            echo "<form class='notes' method='POST' action=''>
-                        <input type='hidden' name='contact_id' value='$contactId'>
-                        <input type='hidden' name='created_at' value='" . date('Y-m-d h:i A') . "'>
+
+            ?>
+            <form class='notes' method='POST' action=''>
+                <input type='hidden' name='contact_id' value='$contactId'>
+                <input type='hidden' name='created_at' value='" . date(' Y-m-d h:i A') . "'>
                         <input type='hidden' name='created_by' value='16'>
                         <div class='text-box'>
                             <textarea name='note' placeholder='Enter details here '></textarea><br>
                         </div>
-                        <input name='noteSubmit' type='submit' id='namesubmit' value='Add Note'>
-                    </form>";
-            ?>
-
+                        <button name='noteSubmit' type='submit' id='namesubmit'>Add Note</button>
+                    </form>
         </main>
+
     </div>
 
 
