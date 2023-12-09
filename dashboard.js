@@ -69,7 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function fetchFullContactDetails(contactId) {
-
     fetch(`full_contact_details.php?id=${contactId}`)
       .then((response) => {
         if (!response.ok) {
@@ -81,6 +80,30 @@ document.addEventListener("DOMContentLoaded", function () {
         const mainContent = document.getElementById("main-content");
         mainContent.innerHTML = data;
         attachViewLinkListeners();
+
+
+        const form = mainContent.querySelector(".notes");
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault(); 
+
+          const formData = new FormData(form);
+          console.log(form);
+          fetch("handle_note_submission.php", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok.");
+              }
+              return response.text();
+            })
+          
+            .catch((error) => {
+              console.error("There was an error!", error);
+            });
+        });
       })
       .catch((error) => {
         console.error(
@@ -89,5 +112,4 @@ document.addEventListener("DOMContentLoaded", function () {
         );
       });
   }
-  
 });

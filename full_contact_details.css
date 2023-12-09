@@ -20,7 +20,7 @@
 
 textarea {
   margin-top: 20px;
-  width: 80vw;
+  width: 10vw;
   height: 4rem;
   border-radius: 7px;
   padding: 10px;
@@ -30,7 +30,49 @@ textarea {
 
 form {
   width: 100%;
+}
+.notes-container h3 {
+  margin-bottom: 20px;
+
+}
+hr {
+ margin-bottom: 10px;
+}
+
+.notes-container  {
+  border: 1px solid rgb(187, 183, 183);
   padding: 10px;
+  border-radius: 10px;
+}
+.comment-box {
+  margin-bottom: 20px;
+
+
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-box strong {
+  font-weight: bolder;
+}
+
+.comment-box .comment {
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+.comment-box .date {
+  font-style: italic;
+  color: #666;
+}
+
+
+textarea {
+  width: 80vw;
+  height: 10vh;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
 }
 
 form button {
@@ -70,19 +112,9 @@ form button {
   align-items: center;
 }
 
-/* .container {
-  height: 100vh;
-
-  display: flex;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-
-} */
-
 .icon {
   margin-right: 10px;
-  margin-left: 15px;
+
 }
 
 
@@ -111,10 +143,10 @@ form button {
 .grid-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 10px;
   grid-gap: 30px;
-  border: 1px solid #ccc;
-  padding: 50px;
+  border: 1px solid grey;
+  padding: 30px;
+  border-radius: 10px;
 }
 
 .grid-item {
@@ -125,8 +157,9 @@ form button {
 
 .container {
   height: 100%;
-  background-color: white;
-  border-left: 1px solid rgb(37, 37, 37);
+  background-color: rgb(238, 236, 236);
+  box-sizing: content-box;
+
 }
 
 #all-content {

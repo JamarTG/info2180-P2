@@ -16,13 +16,6 @@ try {
     exit();
 }
 
-if ($_SESSION['role'] !== 'Admin') {
-    $_SESSION['message'] = "Access denied. Only admins can view users.";
-    $_SESSION['message_type'] = "error";
-    header("Location: dashboard.php");
-    exit();
-}
-
 $contactId = $_GET['id'];
 
 $sql = "SELECT * FROM contacts WHERE id = :contactId";
@@ -30,6 +23,14 @@ $stmt = $conn->prepare($sql);
 $stmt->bindParam(':contactId', $contactId);
 $stmt->execute();
 $contact = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+$assignedUserId = $contact['assigned_to'];
+$userQuery = "SELECT * FROM users WHERE id = :userId";
+$userStmt = $conn->prepare($userQuery);
+$userStmt->bindParam(':userId', $assignedUserId);
+$userStmt->execute();
+$assignedUser = $userStmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -104,27 +105,23 @@ $contact = $stmt->fetch(PDO::FETCH_ASSOC);
                 <div class="grid-item">
                     <strong>Assigned To:</strong>
                     <span>
-                        <?php echo isset($contact['assigned_to']) ? $contact['assigned_to'] : ''; ?>
+                        <?php echo ($assignedUser) ? $assignedUser['firstname'] . ' ' . $assignedUser['lastname'] : 'Unassigned' ?>
                     </span>
                 </div>
             </div>
 
             <?php
-
-            getNotes($conn);
-
-
-
+            getNotesByContact($conn, $contactId);
             ?>
+
             <form class='notes' method='POST' action=''>
-                <input type='hidden' name='contact_id' value='$contactId'>
-                <input type='hidden' name='created_at' value='" . date(' Y-m-d h:i A') . "'>
-                        <input type='hidden' name='created_by' value='16'>
-                        <div class='text-box'>
-                            <textarea name='note' placeholder='Enter details here '></textarea><br>
-                        </div>
-                        <button name='noteSubmit' type='submit' id='namesubmit'>Add Note</button>
-                    </form>
+                <input type='hidden' name='contact_id' value='<?php echo $contactId; ?>'>
+                <input type='hidden' name='created_at' value='<?php echo date('Y-m-d h:i A'); ?>'>
+                <input type='hidden' name='created_by' value='<?php echo $_SESSION['id']; ?>'>
+                <textarea name='note' placeholder='Enter details here'></textarea><br>
+                <button name='noteSubmit' type='submit' id='namesubmit'>Add Note</button>
+            </form>
+
         </main>
 
     </div>
