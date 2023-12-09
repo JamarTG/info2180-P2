@@ -8,12 +8,28 @@ $username = 'root';
 $password = '';
 $dbname = 'dolphin_crm';
 
-$conn = mysqli_connect($host, $username, $password, $dbname);
-
-
-if(!$conn) {
-    die("Connection failed: ".mysqli_connect_error());
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+    exit();
 }
+
+if ($_SESSION['role'] !== 'Admin') {
+    $_SESSION['message'] = "Access denied. Only admins can view users.";
+    $_SESSION['message_type'] = "error";
+    header("Location: dashboard.php");
+    exit();
+}
+
+$contactId = $_GET['id'];
+
+$sql = "SELECT * FROM contacts WHERE id = :contactId";
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':contactId', $contactId);
+$stmt->execute();
+$contact = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -21,47 +37,98 @@ if(!$conn) {
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>New Contact Page</title>
-    <link rel="stylesheet" type="text/css" href="full_contact_details.css" />
+    <title>Contact Details</title>
+
+    <link rel="stylesheet" href="full_contact_details.css">
 </head>
 
 <body>
-    <div class=entire>
-        <div class=hs>
-            <img src="note.png" alt="notes-icon">
-            <h3>Notes</h3>
-        </div>
+    <div class="container">
+        <main id="main-content">
+            <div class="row-1">
 
-        <?php
-
-        getNotes($conn);
-
-        echo "<form class=notes method='POST' action='".setNotes($conn)."'>
-
-                
-
-            <div class = comments>
-                    <label>Add a note about </label><br>
-                    <!--input type='hidden' name='id'-->
-                    <input type='hidden' name='contact_id' value = '13'>
-                    <input type='hidden' name='created_at' value='".date('Y-m-d h:i A')."'>
-                    <input type='hidden' name='created_by' value='16'><br>
-                    <!--input type='text' name='Notes'><br-->
-                    <div class = text-boxx>
-                        <textarea name='note' placeholder = 'Enter details here '></textarea><br>
+                <div class="contact-header">
+                    <svg id="user" xmlns="http://www.w3.org/2000/svg" height="30" width="30"
+                        viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                        <path
+                            d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                    </svg>
+                    <div>
+                        <h2>
+                            <?php echo ucwords($contact['title']) . '. ' . $contact['firstname'] . ' ' . $contact['lastname']; ?>
+                        </h2>
+                        <p>Created on:
+                            <?php echo date('d/m/Y h:i A', strtotime($contact['created_at'])); ?> by
+                            <?php echo $contact['assigned_to']; ?>
+                        </p>
+                        <p>Updated on:
+                            <?php echo date('d/m/Y h:i A', strtotime($contact['updated_at'])); ?>
+                        </p>
                     </div>
-                    <input name= 'noteSubmit' type= 'submit' id='namesubmit' value= 'Add Note'>
-                    
+
                 </div>
-                
-            </form>";
 
 
+                <div class="buttons">
+                    <button type="button" class="assignBtn">Assign to me</button>
 
-        ?>
+                    <?php if ($contact['type'] === 'Support'): ?>
+                        <button class="switchBtn" onclick="switchToSalesLead(<?php echo $contactId; ?>)">Switch to Sales
+                            Lead</button>
+                    <?php else: ?>
+                        <button class="switchBtn" onclick="switchToSupport(<?php echo $contactId; ?>)">Switch to
+                            Support</button>
+                    <?php endif; ?>
+                </div>
+            </div>
 
+            <div class="grid-section">
+                <div class="grid-item">
+                    <strong>Email:</strong>
+                    <span>
+                        <?php echo isset($contact['email']) ? $contact['email'] : ''; ?>
+                    </span>
+                </div>
+                <div class="grid-item">
+                    <strong>Telephone:</strong>
+                    <span>
+                        <?php echo isset($contact['telephone']) ? $contact['telephone'] : ''; ?>
+                    </span>
+                </div>
+                <div class="grid-item">
+                    <strong>Company:</strong>
+                    <span>
+                        <?php echo isset($contact['company']) ? $contact['company'] : ''; ?>
+                    </span>
+                </div>
+                <div class="grid-item">
+                    <strong>Assigned To:</strong>
+                    <span>
+                        <?php echo isset($contact['assigned_to']) ? $contact['assigned_to'] : ''; ?>
+                    </span>
+                </div>
+            </div>
+
+            <?php
+
+            getNotes($conn);
+
+
+            echo "<form class='notes' method='POST' action=''>
+                        <input type='hidden' name='contact_id' value='$contactId'>
+                        <input type='hidden' name='created_at' value='" . date('Y-m-d h:i A') . "'>
+                        <input type='hidden' name='created_by' value='16'>
+                        <div class='text-box'>
+                            <textarea name='note' placeholder='Enter details here '></textarea><br>
+                        </div>
+                        <input name='noteSubmit' type='submit' id='namesubmit' value='Add Note'>
+                    </form>";
+            ?>
+
+        </main>
     </div>
+
+
 </body>
 
 </html>

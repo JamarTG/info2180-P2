@@ -9,7 +9,7 @@
     <div class="header-container">
         <img id='dolphin-logo' src="dolphin_logo.png" alt="Dolphin-Logo">
         <header>
-            <h1>Dolphin CRM</h1>
+            <h1 class="d-h1">Dolphin CRM</h1>
         </header>
     </div>
 

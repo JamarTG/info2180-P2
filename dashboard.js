@@ -22,6 +22,65 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .then((data) => {
         tableContainer.innerHTML = data;
+        attachViewLinkListeners();
+      })
+
+      .catch((error) => {
+        console.error(
+          "There has been a problem with your fetch operation:",
+          error
+        );
+      });
+  }
+
+  const addContactBtn = document.querySelector(".add-contact-btn");
+
+  addContactBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    fetch("new_contact.php")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.text();
+      })
+      .then((data) => {
+        const contentContainer = document.getElementById("main-content");
+        contentContainer.innerHTML = data;
+      })
+      .catch((error) => {
+        console.error(
+          "There has been a problem with your fetch operation:",
+          error
+        );
+      });
+  });
+
+  function attachViewLinkListeners() {
+    const viewLinks = document.querySelectorAll(".view-link");
+    viewLinks.forEach((link) => {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+        const contactId = this.getAttribute("id");
+        fetchFullContactDetails(contactId);
+      });
+    });
+  }
+
+  function fetchFullContactDetails(contactId) {
+
+    fetch(`full_contact_details.php?id=${contactId}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.text();
+      })
+      .then((data) => {
+        const mainContent = document.getElementById("main-content");
+        mainContent.innerHTML = data;
+        attachViewLinkListeners();
       })
       .catch((error) => {
         console.error(
@@ -30,4 +89,5 @@ document.addEventListener("DOMContentLoaded", function () {
         );
       });
   }
+  
 });

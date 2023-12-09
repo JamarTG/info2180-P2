@@ -32,7 +32,7 @@ function generateTable($conn, $query)
     $stmt = $conn->query($query);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $tableHTML = ""; 
+    $tableHTML = "";
 
     $tableHTML .= "<table class='styled-table'>";
     $tableHTML .= "<tr>";
@@ -51,7 +51,7 @@ function generateTable($conn, $query)
         $tableHTML .= "<td>" . $row["company"] . "</td>";
         $typeClass = strtolower(str_replace(' ', '-', $row["type"]));
         $tableHTML .= "<td class='$typeClass'><span class='type-label'>" . ucwords($row["type"]) . "</span></td>";
-        $tableHTML .= "<td>" . "<a class='view-link' href='#'>View</a>" . "</td>";
+        $tableHTML .= "<td>" . "<a id=" . $row["id"] . " class='view-link' href='#'>View</a>" . "</td>";
         $tableHTML .= "</tr>";
     }
 

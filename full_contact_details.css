@@ -1,69 +1,125 @@
-textarea{
-    width: 98%;
-    height: 100px;
-    padding: 10px;
-    background-color: #fff;
-    border-color: lightgray;
-    resize: none;
-    border-left-width: 2px;
-    border-top-width: .5px;
-    border-radius: 5px;
-
+* {
+  padding: 0;
+  margin: 0;
 }
 
-input[type="submit"]{
-    color: #fff;
-    border: none;
-    padding: 5px;
-    margin-right: 5px;
-    background-color: blue;
-    cursor: pointer;
-    width: 75px;
-    height: 25px;
-    float: right;    
-    border-radius: 5px;
-    font-size: arial;
-    font-weight: 400;
-    
+
+
+.switchBtn,
+.assignBtn {
+  min-height: 40px;
+  max-height: 40px;
+  font-weight: bolder;
 }
 
+.switchBtn {
+  width: 14vw;
+  background-color: red;
+  color: #333;
+}
+
+textarea {
+  margin-top: 20px;
+  width: 80vw;
+  height: 4rem;
+  border-radius: 7px;
+  padding: 10px;
+  font-size: 12px;
+
+}
 form {
-    display: flex;
-    flex-direction: column;
-    border-color: gainsboro;
-    padding: 0, 20px;
+background-color: grey;
+}
+.assignBtn {
+  width: 10vw;
+  background-color: rgb(55, 55, 180);
+  color: #333;
 }
 
-notes{
-    border: gray;
+.row-1 {
+  display: flex;
+  justify-content: space-between;
+  padding: 2vh;
+  margin-bottom: 10px;
 }
 
-label {
-    display: block;
+#user {
+  background-color: #ababab;
+  padding: 15px;
+  border-radius: 50%;
+  width: 3vh;
+  height: 3vh;
 }
 
-.comments{
-    width: 100%;
-    height: 200px;
-    padding: 10px;
-    background-color: rgb(244, 243, 243);
-    border-radius: 4px;
+.contact-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.entire{
-    border-color: rgb(197, 194, 194);
-    border-style: solid;
-    border-radius: 5px;
-    margin: 20px;
-    padding: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    border-width: thin;
-    border-left-width: 2px;
+.container {
+  height: 100vh;
+
+  display: flex;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+
 }
 
-img{
-    float:left;
-    width: 21px;
-    padding-right: 10px;
+.icon {
+  margin-right: 10px;
+  margin-left: 15px;
 }
 
+
+main {
+  flex: 1;
+}
+
+
+
+
+
+.contact-header h3 {
+  font-size: 20px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.contact-header p {
+  font-size: 13px;
+  color: black;
+  margin: 0;
+}
+
+.buttons {
+  text-align: right;
+}
+
+.buttons button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.grid-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px;
+  grid-gap: 10px;
+  border: 1px solid #ccc;
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  padding: 1px;
+}
+
+.container {
+  height: 100%;
+  width: 80%;
+  background-color: white;
+  border-left: 1px solid rgb(37, 37, 37);
+}
