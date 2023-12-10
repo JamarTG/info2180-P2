@@ -69,23 +69,23 @@
             <div class="row">
                 <div class="form-group">
                     <label for="firstname">First Name:</label>
-                    <input type="text" id="firstname" name="firstname" required>
+                    <input type="text" id="firstname" name="firstname" placeholder="Jamari" required>
                 </div>
 
                 <div class="form-group">
                     <label for="lastname">Last Name:</label>
-                    <input type="text" id="lastname" name="lastname" required>
+                    <input type="text" id="lastname" name="lastname" placeholder="McFarlane" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" placeholder="jamarimcfarlane12@gmail.com" required>
                 </div>
                 <div class="form-group">
                     <label for="telephone">Telephone:</label>
-                    <input type="text" id="telephone" name="telephone">
+                    <input type="text" id="telephone" name="telephone" placeholder="876-678-4356">
                 </div>
 
 
@@ -94,7 +94,7 @@
             <div class="row">
                 <div class="form-group">
                     <label for="company">Company:</label>
-                    <input type="text" id="company" name="company">
+                    <input type="text" id="company" name="company" placeholder="UWI">
                 </div>
                 <div class="form-group">
                     <label for="type">Type:</label>

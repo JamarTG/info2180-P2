@@ -67,19 +67,22 @@ try {
             <hr>
             <br> <br>
 
+            <?php if ($message) { ?>
+                <p>
+                    <?php echo $message; ?>
+                </p>
+            <?php } ?>
+
             <footer>
                 <p>Copyright &copy; Dolphin CRM</p>
             </footer>
         </form>
 
+
     </div>
 
 
-    <?php if ($message) { ?>
-        <p>
-            <?php echo $message; ?>
-        </p>
-    <?php } ?>
+
 </body>
 
 </html>

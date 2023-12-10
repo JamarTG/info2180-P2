@@ -9,7 +9,7 @@
 <body>
     <?php
     session_start();
-    if($_SESSION["role"] === "Admin") {
+    if ($_SESSION["role"] === "Admin") {
         ?>
         <h2>New User</h2>
         <div class="content-container">
@@ -49,7 +49,9 @@
         </div>
         <?php
     } else {
+        echo '<div class="content-container">';
         echo '<p>Only admins can add users</p>';
+        echo '</div>';
     }
     ?>
 </body>
