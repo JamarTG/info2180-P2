@@ -1,3 +1,13 @@
+<?php
+
+$validRoles = ['Member', 'Admin'];
+
+if (!isset($_SESSION['id']) || !in_array($_SESSION['role'], $validRoles)) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

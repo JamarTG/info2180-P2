@@ -13,7 +13,7 @@ $filtered = isset($_GET["filter"]) ? $_GET["filter"] : "All";
 if ($filtered == "All") {
     echo generateTable($conn, "SELECT * FROM Contacts");
 } else if ($filtered == "SalesLead") {
-    echo generateTable($conn, "SELECT * FROM Contacts WHERE type = 'Sales Lead'");
+    echo generateTable($conn, "SELECT * FROM Contacts WHERE type = 'SalesLead'");
 } else if ($filtered == "Support") {
     echo generateTable($conn, "SELECT * FROM Contacts WHERE type = 'Support'");
 } else if ($filtered == "Assigned") {
@@ -31,6 +31,10 @@ function generateTable($conn, $query)
 {
     $stmt = $conn->query($query);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if (count($results) === 0) {
+        return "<p>No data available.</p>";
+    }
 
     $tableHTML = "";
 

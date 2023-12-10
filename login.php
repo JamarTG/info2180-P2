@@ -10,6 +10,19 @@ $dbname = 'dolphin_crm';
 $message = '';
 
 try {
+    $conn = new PDO("mysql:host=$host;", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn->exec("CREATE DATABASE IF NOT EXISTS $dbname");
+
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $schema = file_get_contents('schema.sql');
+    $conn->exec($schema);
+} catch (PDOException $e) {
+}
+
+try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

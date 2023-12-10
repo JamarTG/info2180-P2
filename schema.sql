@@ -34,6 +34,6 @@ CREATE TABLE Notes (
     created_at DATETIME
 );
 
--- Insert a user
+
 INSERT INTO Users (firstname, lastname, password, email, role, created_at)
-VALUES ('Admin', 'User', '$2y$10$OM5emM7Q8sn3jm42Tsg3i.4yHo4zaJiwLc3X5nIB8ViopajOsTyLy', 'admin@project2.com', 'Admin' , NOW());
+VALUES ('Jamari', 'McFarlane', '$2y$10$OM5emM7Q8sn3jm42Tsg3i.4yHo4zaJiwLc3X5nIB8ViopajOsTyLy', 'admin@project2.com', 'Admin' , NOW());

@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+$validRoles = ['Member', 'Admin'];
+
+if (!isset($_SESSION['id']) || !in_array($_SESSION['role'], $validRoles)) {
+    header("Location: login.php");
+    exit();
+}
 
 function getNotesByContact($conn, $contactId)
 {
@@ -41,7 +49,7 @@ function getNotesByContact($conn, $contactId)
     }
 
     echo "</div>";
-    
+
 }
 
 

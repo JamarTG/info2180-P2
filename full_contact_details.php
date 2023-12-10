@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+$validRoles = ['Member', 'Admin'];
+
+if (!isset($_SESSION['id']) || !in_array($_SESSION['role'], $validRoles)) {
+    header("Location: login.php");
+    exit();
+}
+
 include 'comments.php';
 
 $host = 'localhost';
@@ -71,7 +78,7 @@ $assignedUser = $userStmt->fetch(PDO::FETCH_ASSOC);
 
 
                 <div class="buttons">
-                <button type="button" class="assignBtn" id="<?php echo $contactId; ?>">Assign to me</button>
+                    <button type="button" class="assignBtn" id="<?php echo $contactId; ?>">Assign to me</button>
 
                     <?php if ($contact['type'] === 'Support'): ?>
                         <button class="switchBtn" id="<?php echo $contactId; ?>">Switch to Sales

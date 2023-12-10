@@ -7,7 +7,18 @@
 https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css
 " rel="stylesheet">
     <link rel="stylesheet" href="dashboard.css">
-    <?php include "header.php" ?>
+    <?php
+    session_start();
+
+    // $validRoles = ['Member', 'Admin'];
+
+    // if (!isset($_SESSION['id']) || !in_array($_SESSION['role'], $validRoles)) {
+    //     header("Location: login.php");
+    //     exit();
+    // }
+    include "header.php"
+
+        ?>
 </head>
 
 
@@ -36,8 +47,8 @@ https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css
         <main id="main-content">
             <div class="header">
                 <h2>Dashboard</h2>
-                <a class="add-contact-btn"><svg
-                        xmlns="http://www.w3.org/2000/svg" fill="white" height="16" width="14" viewBox="0 0 448 512">
+                <a class="add-contact-btn"><svg xmlns="http://www.w3.org/2000/svg" fill="white" height="16" width="14"
+                        viewBox="0 0 448 512">
                         <path
                             d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
                     </svg>Add Contact</a>
@@ -80,6 +91,7 @@ https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css
                         event.preventDefault();
                         const component = this.getAttribute('data-component');
                         loadComponent(component);
+
                     });
                 });
 
@@ -107,6 +119,18 @@ https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css
                         })
                         .then(data => {
                             document.getElementById('main-content').innerHTML = data;
+
+
+                            const addUserBtn = document.querySelector(".add-user-btn");
+                            if (addUserBtn) {
+                                addUserBtn.addEventListener("click", async () => {
+
+                                    document.getElementById('main-content').innerHTML = await fetch("add_user.php").then((response) => {
+                                        return response.text()
+                                    });
+                                });
+                            }
+
                         })
                         .catch(error => {
                             console.error('There has been a problem with your fetch operation:', error);
