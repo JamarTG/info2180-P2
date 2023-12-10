@@ -71,13 +71,13 @@ $assignedUser = $userStmt->fetch(PDO::FETCH_ASSOC);
 
 
                 <div class="buttons">
-                    <button type="button" class="assignBtn">Assign to me</button>
+                <button type="button" class="assignBtn" id="<?php echo $contactId; ?>">Assign to me</button>
 
                     <?php if ($contact['type'] === 'Support'): ?>
-                        <button class="switchBtn" onclick="switchToSalesLead(<?php echo $contactId; ?>)">Switch to Sales
+                        <button class="switchBtn" id="<?php echo $contactId; ?>">Switch to Sales
                             Lead</button>
                     <?php else: ?>
-                        <button class="switchBtn" onclick="switchToSupport(<?php echo $contactId; ?>)">Switch to
+                        <button class="switchBtn" id="<?php echo $contactId; ?>">Switch to
                             Support</button>
                     <?php endif; ?>
                 </div>
