@@ -60,7 +60,7 @@ $assignedUser = $userStmt->fetch(PDO::FETCH_ASSOC);
                         </h2>
                         <p>Created on:
                             <?php echo date('d/m/Y h:i A', strtotime($contact['created_at'])); ?> by
-                            <?php echo $contact['assigned_to']; ?>
+                            <?php echo ($assignedUser) ? $assignedUser['firstname'] . ' ' . $assignedUser['lastname'] : 'Unassigned'; ?>
                         </p>
                         <p>Updated on:
                             <?php echo date('d/m/Y h:i A', strtotime($contact['updated_at'])); ?>
