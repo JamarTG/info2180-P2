@@ -32,10 +32,6 @@ function generateTable($conn, $query)
     $stmt = $conn->query($query);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    if (count($results) === 0) {
-        return "<p>No data available.</p>";
-    }
-
     $tableHTML = "";
 
     $tableHTML .= "<table class='styled-table'>";

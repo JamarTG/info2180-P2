@@ -9,14 +9,6 @@
 <body>
     <?php
     session_start();
-
-    $validRoles = ['Member', 'Admin'];
-
-    if (!isset($_SESSION['id']) || !in_array($_SESSION['role'], $validRoles)) {
-        header("Location: login.php");
-        exit();
-    }
-
     if ($_SESSION["role"] === "Admin") {
         ?>
         <h2>New User</h2>

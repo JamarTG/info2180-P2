@@ -7,18 +7,7 @@
 https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css
 " rel="stylesheet">
     <link rel="stylesheet" href="dashboard.css">
-    <?php
-    session_start();
-
-    // $validRoles = ['Member', 'Admin'];
-
-    // if (!isset($_SESSION['id']) || !in_array($_SESSION['role'], $validRoles)) {
-    //     header("Location: login.php");
-    //     exit();
-    // }
-    include "header.php"
-
-        ?>
+    <?php include "header.php" ?>
 </head>
 
 
@@ -91,7 +80,6 @@ https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css
                         event.preventDefault();
                         const component = this.getAttribute('data-component');
                         loadComponent(component);
-
                     });
                 });
 
@@ -120,16 +108,15 @@ https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css
                         .then(data => {
                             document.getElementById('main-content').innerHTML = data;
 
-
                             const addUserBtn = document.querySelector(".add-user-btn");
                             if (addUserBtn) {
                                 addUserBtn.addEventListener("click", async () => {
-
-                                    document.getElementById('main-content').innerHTML = await fetch("add_user.php").then((response) => {
-                                        return response.text()
-                                    });
-                                });
+                                    document.getElementById('main-content').innerHTML = await fetch("add_user.php")
+                                        .then((res) => res.text())
+                                })
                             }
+
+
 
                         })
                         .catch(error => {
