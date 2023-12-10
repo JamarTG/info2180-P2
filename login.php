@@ -1,19 +1,35 @@
 <?php
-
 session_start();
 
 $host = 'localhost';
 $username = 'root';
 $password = '';
-$dbname = 'dolphin_crm';
+$databasename = 'dolphin_crm';
 
 $message = '';
 
 try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $conn = new PDO("mysql:host=$host;", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn->exec("CREATE DATABASE IF NOT EXISTS $databasename");
+
+    $conn = new PDO("mysql:host=$host;dbname=$databasename", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $schema = file_get_contents('schema.sql');
+    $conn->exec($schema);
+
+    $message = "Tables created successfully";
+} catch (PDOException $e) {
+ 
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    try {
+        $conn = new PDO("mysql:host=$host;dbname=$databasename", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
         $email = $_POST['email'];
         $password = $_POST['password'];
         $stmt = $conn->prepare("SELECT * FROM Users WHERE email = :email");
@@ -29,9 +45,9 @@ try {
         } else {
             $message = "Invalid username or password";
         }
+    } catch (PDOException $e) {
+        $message = "Login failed: " . $e->getMessage();
     }
-} catch (PDOException $e) {
-    $message = "Connection failed: " . $e->getMessage();
 }
 ?>
 
@@ -45,9 +61,9 @@ try {
     <link rel="stylesheet" href="login.css" />
 </head>
 
-<?php include "header.php" ?>
-
 <body>
+
+<?php include "header.php" ?>
 
     <div id="form-container">
         <h2 class="login-h2">Login</h2>
@@ -73,18 +89,11 @@ try {
                 </p>
             <?php } ?>
 
-
-
             <footer>
                 <p>Copyright &copy; Dolphin CRM</p>
             </footer>
         </form>
-
-
     </div>
-
-
-
 </body>
 
 </html>

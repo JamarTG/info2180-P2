@@ -10,7 +10,7 @@
 
     <div class="header">
         <h2>Users</h2>
-        <a href="dashboard.php?component=add_user.php" class="add-user-btn">
+        <a  class="add-user-btn">
             <svg xmlns="http://www.w3.org/2000/svg" fill="white" height="16" width="14"
                 viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
                 <path

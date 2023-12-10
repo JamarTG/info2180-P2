@@ -34,6 +34,13 @@ function generateTable($conn, $query)
 
     $tableHTML = "";
 
+    $tableHTML = "";
+
+    if (empty($results)) {
+        $tableHTML .= "<p style='text-align: center; margin-top: 20px;'>No data available</p>";
+        return $tableHTML;
+    }
+
     $tableHTML .= "<table class='styled-table'>";
     $tableHTML .= "<tr>";
     $tableHTML .= "<th>Name</th>";
