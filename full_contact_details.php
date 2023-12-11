@@ -71,7 +71,7 @@ $assignedUser = $userStmt->fetch(PDO::FETCH_ASSOC);
 
 
                 <div class="buttons">
-                <button type="button" class="assignBtn" id="<?php echo $contactId; ?>">Assign to me</button>
+                    <button type="button" class="assignBtn" id="<?php echo $contactId; ?>">Assign to me</button>
 
                     <?php if ($contact['type'] === 'Support'): ?>
                         <button class="switchBtn" id="<?php echo $contactId; ?>">Switch to Sales
@@ -105,7 +105,7 @@ $assignedUser = $userStmt->fetch(PDO::FETCH_ASSOC);
                 <div class="grid-item">
                     <strong>Assigned To:</strong>
                     <span>
-                        <?php echo ($assignedUser) ? $assignedUser['firstname'] . ' ' . $assignedUser['lastname'] : 'Unassigned' ?>
+                        <?php echo ($assignedUser) ? ucwords($assignedUser['firstname']) . ' ' . ucwords($assignedUser['lastname']) : 'Unassigned' ?>
                     </span>
                 </div>
             </div>
