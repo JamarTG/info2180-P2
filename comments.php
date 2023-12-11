@@ -49,21 +49,22 @@ function getNotesByContact($conn, $contactId)
 function setNotes($conn)
 {
     if (isset($_POST['noteSubmit'])) {
-        $contact_id = $_POST['contact_id'];
-        $created_at = $_POST['created_at'];
-        $created_by = $_POST['created_by'];
-        $note = $_POST['note'];
+        $contact_id = filter_var($_POST['contact_id'], FILTER_VALIDATE_INT); // Sanitize contact_id as an integer
+        $created_at = $_POST['created_at']; 
+        $created_by = filter_var($_POST['created_by'], FILTER_SANITIZE_STRING);
+        $note = filter_var($_POST['note'], FILTER_SANITIZE_STRING);
 
         $sql = "INSERT INTO notes (contact_id, created_at, created_by, comment) 
                 VALUES (:contact_id, :created_at, :created_by, :note)";
 
         $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':contact_id', $contact_id);
-        $stmt->bindParam(':created_at', $created_at);
-        $stmt->bindParam(':created_by', $created_by);
-        $stmt->bindParam(':note', $note);
+        $stmt->bindParam(':contact_id', $contact_id, PDO::PARAM_INT);
+        $stmt->bindParam(':created_at', $created_at, PDO::PARAM_STR);
+        $stmt->bindParam(':created_by', $created_by, PDO::PARAM_STR);
+        $stmt->bindParam(':note', $note, PDO::PARAM_STR);
 
         $stmt->execute();
     }
 }
+
 ?>

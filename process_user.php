@@ -12,19 +12,19 @@ $db_password = '';
 $databasename = 'dolphin_crm';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $email = $_POST['email'];
+    $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING);
+    $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_STRING);
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $password = $_POST['password'];
     $role = $_POST['role'];
-    
+
     if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/", $password)) {
         echo "Ensure that the password has at least one number and letter (including a capital letter) and is at least 8 characters long";
         exit();
     }
 
     $password = password_hash($password, PASSWORD_DEFAULT);
-    $created_at = date('Y-m-d H:i:s'); // Current timestamp
+    $created_at = date('Y-m-d H:i:s');
 
     try {
         $conn = new PDO("mysql:host=$host;dbname=$databasename", $username, $db_password);
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->bindParam(':password', $password);
         $stmt->bindParam(':role', $role);
         $stmt->bindParam(':created_at', $created_at);
-    
+
         $stmt->execute();
 
         echo "User added successfully!";

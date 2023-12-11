@@ -16,14 +16,14 @@
     $assigned_to_options = $assigned_to_query->fetchAll(PDO::FETCH_ASSOC);
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $title = $_POST['title'];
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
-        $telephone = $_POST['telephone'];
-        $type = $_POST['type'];
-        $email = $_POST['email'];
-        $company = $_POST['company'];
-        $assigned_to = $_POST['assigned_to'];
+        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
+        $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING);
+        $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_STRING);
+        $telephone = filter_input(INPUT_POST, 'telephone', FILTER_SANITIZE_STRING);
+        $type = filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING);
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $company = filter_input(INPUT_POST, 'company', FILTER_SANITIZE_STRING);
+        $assigned_to = filter_input(INPUT_POST, 'assigned_to', FILTER_VALIDATE_INT);
         $created_at = date('Y-m-d H:i:s');
         $updated_at = date('Y-m-d H:i:s');
         $created_by = $_SESSION['id'];

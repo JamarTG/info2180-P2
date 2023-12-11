@@ -16,10 +16,10 @@ try {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $contactId = $_POST['contact_id'];
-    echo $_POST['contact_id'];
+    $contactId = filter_input(INPUT_POST, 'contact_id', FILTER_VALIDATE_INT);
+  
     $user_id = $_SESSION['id'];
-    $note = $_POST['note'];
+    $note = filter_input(INPUT_POST, 'note', FILTER_SANITIZE_STRING);
     date_default_timezone_set('America/Jamaica');
 
     $created_at = date('Y-m-d h:i A');
