@@ -30,8 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn = new PDO("mysql:host=$host;dbname=$databasename", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
         $stmt = $conn->prepare("SELECT * FROM Users WHERE email = :email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();

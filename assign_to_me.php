@@ -1,7 +1,6 @@
 <?php
 session_start();
-$userId = $_SESSION['id'];
-
+$userId = filter_var($_SESSION['id'], FILTER_SANITIZE_NUMBER_INT);
 $servername = "localhost";
 $username = "root";
 $password = "";
